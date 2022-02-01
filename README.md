@@ -111,26 +111,29 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 
 The tag **<persistence-unit/>** is to gather persistences configuration, which will represent the database used by the application. Inside this tag is where the database configuration is done.
 
-
+The first property is to sett the Driver for the database, for this project H2 will be used and, therefore, H2 Driver will be used.
 
 ```java
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
 ```
   
+The property below will define the url that the database will use. In this case, mem(memory):loja(project name).
+  
 ```java
   <property name="javax.persistence.jdbc.url" value="h2:mem:loja" />
 ```
 
-```java
-			<property name="javax.persistence.jdbc.username" value="sa" />
-```
+Both properties below are used to set database username and password, "sa" and "" are default for H2 database.
 
 ```java
-			<property name="javax.persistence.jdbc.password" value="" />
+<property name="javax.persistence.jdbc.username" value="sa" />
+<property name="javax.persistence.jdbc.password" value="" />
 ```
 
+Dialect is set to adjust the communication with the database. If the database is different the dialect must be too. In this case, H2Dialect will be chosen.
+
 ```java
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 ```
   
 
