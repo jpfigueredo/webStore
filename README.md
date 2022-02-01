@@ -8,7 +8,6 @@
 
 - https://www.linkedin.com/in/jpfigueredo/
 - https://www.instagram.com/figfig.jpg/
-- 
 
 
 ## What you should know beforehand
