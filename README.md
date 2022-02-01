@@ -23,7 +23,6 @@
 - [Configuring Maven](#configuring-maven)
 - [Configuring persistence xml](#configuring-persistence-xml)
 - [Mapping Entity](#mapping-entity)
-- [Hibernate](#Hibernate)
 
 
 
@@ -184,9 +183,17 @@ So that the model is finished, all getters and setters are called.
 	CTRL+SHIFT+O imports what is needed.
 	CTRL+SHIFT+F fixes identation and spaces.**
 
+As default, JPA requires that the class is also added on persistence.xml, inside persistence-unit.
+***NOTE:* Hibernate does not require for it to be implemented on persistence-unit, but, JPA does. So, if the project is going to be used with other databases, it is recommended that the tag is implemented.** It should look like this.
+***NOTE:*IF one entity class is added on persistence.xml, all Entities must be added too.**
 
 ```java
-
+	<persistence-unit name="webStore" transaction-type="RESOURCE_LOCAL">
+		<class>br.com.webStore.model.Produto</class>
+		<properties>
+			...
+		</properties>
+	</persistence-unit>
 ```
 
 
@@ -200,4 +207,3 @@ JTA é para servidor de aplicação, para trabalhar com EJB, JMS e outros tecnol
 ```java
 
 ```
-## Hibernate
