@@ -18,6 +18,7 @@
 - [JPA - Java Persistence API](#JPA_Java-Persistence-API)
 - [Configuring Maven](#configuring-maven)
 - [Configuring persistence.xml](#configuring-persistence-xml)
+- [Mapping Entity](#mapping-entity)
 - [Hibernate](#Hibernate)
 
 ## JPA - Java Persistence API
@@ -97,8 +98,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   
 		<properties>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="h2:mem:loja" />
-			<property name="javax.persistence.jdbc.username" value="sa" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:loja" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
       
@@ -120,13 +121,13 @@ The first property is to sett the Driver for the database, for this project H2 w
 The property below will define the url that the database will use. In this case, mem(memory):loja(project name).
   
 ```java
-  <property name="javax.persistence.jdbc.url" value="h2:mem:loja" />
+  <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:loja" />
 ```
 
 Both properties below are used to set database username and password, "sa" and "" are default for H2 database.
 
 ```java
-<property name="javax.persistence.jdbc.username" value="sa" />
+<property name="javax.persistence.jdbc.user" value="sa" />
 <property name="javax.persistence.jdbc.password" value="" />
 ```
 
@@ -135,21 +136,62 @@ Dialect is set to adjust the communication with the database. If the database is
 ```java
 <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 ```
-  
+
+For now, all set!
+
+## Mapping Entity
+
+Now, a model class is needed, one that will represent a Table on the Database. JPA Mapping is done through annotation and, for an Entity to be created, the annotation @Entity must be written on out model class, as a way of showing to the database that it is a table, as seen below.
+
+***NOTE:* ALWAYS CHOOSE javax.persistence as import, because that import calls JPA, not Hibernate, otherwise, if Hibernate is chosen, the project will be stuck to Hibernate.**
+
+If the **Entity** does not have the same name as the **Table** on the database, another annotation is required, passing the **database Table's** name as parameter. That is, if the **class** is called **Product** and the **DB** calls it **Products**, the following must be done **@Table(name="products")**.
+Another annotation that can be done is to define a specific column where the value of the attribute should be put, the annotation is **@Column(name="attribute")**, this is done in case that that the attribute and the column on the **DB** have **different names** 
+**@Id** annotation says which of the attributes is the **Primary Key** for the **Database** 
+**@GeneratedValue(strategy=GenerationType.IDENTITY)** does the autoincrement for the ID and sorts it as added.
+
+***NOTE*: 
+- If a existing ID is passed as parameter, the values at the column will be replaced by the new values
+- IF the ID does not exist and is far from the last ID, say "ID = 100" is put at a Table that have only 4 ID's, the ID will be changed to 5 and put at the last position.**
+
+The code below serves as an example:
+
+```java
+@Entity
+@Table(name = "products")
+public class Product {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	
+	@Column(name="description")
+	private String descricao;
+	
+	private BigDecimal price;
+```
+
+So that the model is finished, all getters and setters are called.
+
+**NOTE: CTRL+3 opens a tab, if "Getters and Setters" are written on it, it will lead to a screen were they can be called.
+	CTRL+SHIFT+O imports what is needed.
+	CTRL+SHIFT+F fixes identation and spaces.**
+
+
+```java
+
+```
+
+
+
+
+
+
 
 
 JTA é para servidor de aplicação, para trabalhar com EJB, JMS e outros tecnologias do JavaEE e o server se encarrega de cuidar da transação
+```java
 
-
-
-
-
-
-
-
-
-
-
-
-
+```
 ## Hibernate
