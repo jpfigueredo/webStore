@@ -22,7 +22,7 @@
 ## Summary
 - [JPA - Java Persistence API](#JPA---Java-Persistence-API)
 - [Configuring Maven](#configuring-maven)
-- [Configuring persistence.xml](#configuring-persistence-xml)
+- [Configuring persistence xml](#configuring-persistence-xml)
 - [Mapping Entity](#mapping-entity)
 - [Hibernate](#Hibernate)
 
@@ -86,7 +86,7 @@ Open pom.xml and add the following configurations.
 
 Save, wait for building, **Right-click** project folder on **Project Explorer** and go **Maven -> Update Project**.
 
-## Configuring persistence.xml
+## Configuring persistence xml
 
 On **src/main/resources**, create a folder named **META-INF** and, inside it, a xml file named **persistence.xml**.
 ***NOTE: The name persistence.xml is mandatory**
