@@ -2,10 +2,14 @@
 
 **Web application project focused on JPA Persistence and Hibernate.**
 
+
+
 ## Social Midias
 
 - https://www.linkedin.com/in/jpfigueredo/
 - https://www.instagram.com/figfig.jpg/
+- 
+
 
 ## What you should know beforehand
 - Java programming
@@ -14,12 +18,15 @@
 - Database
 
 
+
 ## Summary
-- [JPA - Java Persistence API](#JPA_Java-Persistence-API)
+- [JPA - Java Persistence API](#JPA-Java-Persistence-API)
 - [Configuring Maven](#configuring-maven)
 - [Configuring persistence.xml](#configuring-persistence-xml)
 - [Mapping Entity](#mapping-entity)
 - [Hibernate](#Hibernate)
+
+
 
 ## JPA - Java Persistence API
 
@@ -79,7 +86,7 @@ Open pom.xml and add the following configurations.
 
 Save, wait for building, **Right-click** project folder on **Project Explorer** and go **Maven -> Update Project**.
 
-## Configurating persistence.xml
+## Configuring persistence.xml
 
 On **src/main/resources**, create a folder named **META-INF** and, inside it, a xml file named **persistence.xml**.
 ***NOTE: The name persistence.xml is mandatory**
