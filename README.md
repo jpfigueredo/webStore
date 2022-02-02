@@ -343,6 +343,6 @@ The Entity's states are:
 
 At this momment, it can be commited with **.commit()**, which will generate the id, to confirm sending data and **.flush()**, for data update. **.flush()** is used if, for instances, the generation of an id is needed or if the binding of this table with another one is needed, before **.commit()**. 
 
-- **Detached** = After .close() is done. It means that, even if applying a ${Entity}.setName("John"), it'll not go through.
+- **Detached** = After .close() or .clear() is done. It means that, even if applying a ${Entity}.setName("John"), it'll not go through.
 
 
