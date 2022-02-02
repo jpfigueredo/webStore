@@ -23,6 +23,7 @@
 - [Configuring Maven](#configuring-maven)
 - [Configuring persistence xml](#configuring-persistence-xml)
 - [Mapping Entity](#mapping-entity)
+- [Entity Persistence](#entity-persistence)
 
 
 
@@ -196,14 +197,32 @@ As default, JPA requires that the class is also added on persistence.xml, inside
 	</persistence-unit>
 ```
 
+## Entity Persistence
+
+No JDBC, a persistencia de dados no banco de dados era feito pelo método connection(), tinhamos que fazer toda a conversa da conexão na mão.
+Na JPA, tem algo parecido, a conexão é escondida, mas tem uma interface que faz a ponte entre o Java e o DB, o EntityManager.
+Para acessar o banco de dados, pra salvar, excluir, atualizar, carregar, fazer select, qualquer operação no banco de dados, precisamos do EntityManager.
+Se fosse padrão java, instanciariamos "new EntityManager()", porém, EntityManager é uma inteface, não uma classe. Logo, no JPA, não criamos o EntityManager, nós utilizamos o EntityManagerFactory, baseado no padrão Factory, ou seja, existe uma Factory de EntityManager, o EntityManagerFactory. Logo, o Factory que irá criar um EntityManager para nós.
+Para criar um EntityManagerFactory precisamos chamar uma classe da JPA, chamada Persistence, onde temos o método Persistence.createEntityManagerFactory({nome no persistence-unit}), o método necessita de 1 parâmetro String, esse parametro é o nome da persistence-unit, para que a JPA saiba em qual banco ela vai ser conectar.
+Agora, com Factory criado, criamos o EntityManager com factory.createEntityManager();
+
+.persist() do entityManager faz o insert no DB. Pronto, dados inseridos. A classe com a anotação indica a tabela na qual o objeto será inserido.
 
 
-
-
-
-
-
-JTA é para servidor de aplicação, para trabalhar com EJB, JMS e outros tecnologias do JavaEE e o server se encarrega de cuidar da transação
+<property name="hibernate.show_sql" value="true"/>
+Mostra o que o banco de dados está rodando no banco de dados. Como "RESOURCE_LOCAL" está sendo usado ao invés de "JTA" no persistence.xml, teremos que fazer a transição na mão, o JTA faria isso para nós, porém, JTA é para servidor de aplicação, para trabalhar com EJB, JMS e outros tecnologias do JavaEE e o server se encarrega de cuidar da transação.
+Então, antes de fazer o .persist(), precisamos usar
 ```java
-
+	em.getTransaction().begin();
+	em.persist(celular);
+	em.getTransaction().commit();
+	em.close();
 ```
+Se rodar, vai dar erro, pois as tabelas não foram criadas no banco de dados, para que possamos habilitar o Hibernate para criar para nós, adicionamos ao persistence.xml
+
+```java
+	<property name="hibernate.hbm2ddl.auto" value="create"/>
+```
+
+Se value for "create", o hibernate vai criar um banco toda vez que criar a tabela, tem "create-drop", onde as tabelas são criadas quando rodar a aplicação e dropadas assim que a aplicação termina, "update" que o hibernate vai criar a tabela se ela não existir e atualiza a tabela, mas nada será apagado e, por fim, "validate" que valida se está tudo ok no db e gera um log. O projeto usará create. 
+
