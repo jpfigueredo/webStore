@@ -225,4 +225,4 @@ Se rodar, vai dar erro, pois as tabelas não foram criadas no banco de dados, pa
 ```
 
 Se value for "create", o hibernate vai criar um banco toda vez que criar a tabela, tem "create-drop", onde as tabelas são criadas quando rodar a aplicação e dropadas assim que a aplicação termina, "update" que o hibernate vai criar a tabela se ela não existir e atualiza a tabela, mas nada será apagado e, por fim, "validate" que valida se está tudo ok no db e gera um log. O projeto usará create. 
-
+***NOTE:* Transaction is only needed for writting operations, like insert, update e delete**
