@@ -26,7 +26,7 @@
 - [Entity Persistence](#entity-persistence)
 - [Mapping Relations](#mapping-relations)
 - [Understanding Entity States](#understanding-entity-states)
-- [Consulting with JPQL](#Consulting-with-JPQL
+- [Consulting with JPQL](#Consulting-with-JPQL)
 
 
 ## Java Persistence API
@@ -348,3 +348,4 @@ At this momment, it can be commited with **.commit()**, which will generate the 
 
 ## Consulting with JPQL
 
+Loading...
