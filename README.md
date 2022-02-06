@@ -26,6 +26,7 @@
 - [Entity Persistence](#entity-persistence)
 - [Mapping Relations](#mapping-relations)
 - [Understanding Entity States](#understanding-entity-states)
+- [Consulting with JPQL](#Consulting-with-JPQL
 
 
 ## Java Persistence API
@@ -345,4 +346,5 @@ At this momment, it can be commited with **.commit()**, which will generate the 
 
 - **Detached** = After .close() or .clear() is done. It means that, even if applying a ${Entity}.setName("John"), it'll not go through.
 
+## Consulting with JPQL
 
