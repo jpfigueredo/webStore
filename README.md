@@ -19,7 +19,7 @@
 
 
 ## Summary
-- [JPA - Java Persistence API](#JPA---Java-Persistence-API)
+- [Java Persistence API](#Java-Persistence-API)
 - [Configuring Maven](#configuring-maven)
 - [Configuring persistence xml](#configuring-persistence-xml)
 - [Mapping Entity](#mapping-entity)
