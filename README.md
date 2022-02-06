@@ -28,7 +28,7 @@
 - [Understanding Entity States](#understanding-entity-states)
 
 
-## JPA - Java Persistence API
+## Java Persistence API
 
 Before the project starts, here is some theory.
 
