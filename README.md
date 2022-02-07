@@ -19,14 +19,14 @@
 
 
 ## Summary
-- [Java Persistence API](#Java-Persistence-API)
+- [Java Persistence API](#java-persistence-api)
 - [Configuring Maven](#configuring-maven)
 - [Configuring persistence xml](#configuring-persistence-xml)
 - [Mapping Entity](#mapping-entity)
 - [Entity Persistence](#entity-persistence)
 - [Mapping Relations](#mapping-relations)
 - [Understanding Entity States](#understanding-entity-states)
-- [Consulting with JPQL](#Consulting-with-JPQL)
+- [Consulting with JPQL](#consulting-with-jpql)
 
 
 ## Java Persistence API
@@ -348,4 +348,21 @@ At this momment, it can be commited with **.commit()**, which will generate the 
 
 ## Consulting with JPQL
 
-Loading...
+**JPQL** and **SQL language** are very similar. To do searches with **JPQL**, the only **difference** is that the **Table name** must be the **Object's attribute name**, so, if the **attributes name** on the **Table** is **category_name** and the **attribute's name** in the object file is **name**, the search must be done with the attribute's name, as seen below.
+
+```java
+	public List<Product> findByName(String name) {
+		String jpql = "SELECT p FROM Product p WHERE p.name = :name";
+		return em.createQuery(jpql, Product.class).setParameter("name", name).getResultList();
+	}
+
+	public List<Produto> findByCategoryName(String nome) {
+		String jpql = "SELECT p FROM Product p WHERE p.category.name = ?1";
+		return em.createQuery(jpql, Product.class).setParameter(1, name).getResultList();
+	}
+
+	public BigDecimal findProductPriceByName(String nome) {
+		String jpql = "SELECT p.price FROM Product p WHERE p.name = :name";
+		return em.createQuery(jpql, BigDecimal.class).setParameter("name", name).getSingleResult();
+	}
+```
